@@ -17,49 +17,45 @@ html{
 }
 
 body{
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at top,#5b164f 0%,#210c27 45%,#090611 100%);
+  radial-gradient(circle at 20% 10%,#651c58 0%,transparent 35%),
+  radial-gradient(circle at 90% 30%,#421044 0%,transparent 35%),
+  linear-gradient(180deg,#210a25,#0b0610);
   color:white;
-  min-height:100vh;
   overflow-x:hidden;
 }
 
 #hearts{
   position:fixed;
   inset:0;
-  pointer-events:none;
   overflow:hidden;
+  pointer-events:none;
   z-index:0;
 }
 
 .heart{
   position:absolute;
   bottom:-50px;
-  animation:floatUp linear forwards;
-  opacity:.7;
-  font-size:20px;
+  animation:up linear forwards;
+  opacity:.75;
 }
 
-@keyframes floatUp{
-  from{
-    transform:translateY(0) rotate(0deg);
+@keyframes up{
+  0%{
+    transform:translateY(0) rotate(0);
     opacity:0;
   }
-  15%{opacity:.8;}
-  to{
+  15%{opacity:.8}
+  100%{
     transform:translateY(-110vh) rotate(360deg);
     opacity:0;
   }
 }
 
-.container{
+.page{
   position:relative;
   z-index:2;
-  width:100%;
-  max-width:900px;
-  margin:auto;
-  padding:25px 16px 60px;
 }
 
 .hero{
@@ -69,243 +65,278 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
+  padding:25px 18px;
 }
 
-.small{
-  font-size:15px;
-  letter-spacing:4px;
-  text-transform:uppercase;
+.overline{
+  letter-spacing:5px;
+  font-size:14px;
   opacity:.75;
-  margin-bottom:15px;
+  margin-bottom:20px;
 }
 
-h1{
-  font-size:clamp(45px,12vw,90px);
+.hero h1{
+  font-size:clamp(52px,14vw,100px);
   line-height:1;
-  margin-bottom:15px;
-  background:linear-gradient(90deg,#fff,#ffb6df,#fff);
+  background:linear-gradient(90deg,#fff,#ffb7e2,#fff);
   -webkit-background-clip:text;
   color:transparent;
-  animation:glow 2s infinite alternate;
+  filter:drop-shadow(0 0 18px rgba(255,80,180,.45));
+  animation:pulse 2s infinite alternate;
 }
 
-@keyframes glow{
-  from{filter:drop-shadow(0 0 5px #ff55b8);}
-  to{filter:drop-shadow(0 0 25px #ff55b8);}
+@keyframes pulse{
+  from{transform:scale(1)}
+  to{transform:scale(1.04)}
 }
 
-.subtitle{
-  font-size:clamp(18px,5vw,28px);
-  margin-bottom:35px;
+.hero p{
+  margin-top:22px;
+  font-size:clamp(18px,5vw,27px);
+  max-width:650px;
+  line-height:1.5;
 }
 
 .countdown{
   display:flex;
+  gap:9px;
+  margin:35px 0;
   justify-content:center;
-  gap:10px;
   flex-wrap:wrap;
-  margin-bottom:30px;
 }
 
 .time{
-  width:75px;
+  width:76px;
   padding:13px 5px;
-  border-radius:15px;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.17);
   backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-.time strong{
+.time b{
   display:block;
-  font-size:27px;
+  font-size:28px;
 }
 
 .time span{
+  display:block;
+  margin-top:5px;
   font-size:11px;
   opacity:.7;
-  text-transform:uppercase;
 }
 
-button{
-  border:0;
-  cursor:pointer;
+.btn{
+  border:none;
   color:white;
-  font-size:16px;
-  font-weight:bold;
-  padding:15px 27px;
+  background:linear-gradient(135deg,#ff2e9d,#ff6666);
+  padding:17px 30px;
   border-radius:50px;
-  background:linear-gradient(135deg,#ff3f9f,#ff6b6b);
-  box-shadow:0 8px 30px rgba(255,55,160,.35);
-  transition:.25s;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 10px 35px rgba(255,45,155,.35);
+  cursor:pointer;
+  transition:.3s;
 }
 
-button:hover{
-  transform:translateY(-3px) scale(1.03);
-}
-
-button:active{
-  transform:scale(.97);
+.btn:active{
+  transform:scale(.95);
 }
 
 #surprise{
   display:none;
-  text-align:center;
-  animation:fadeIn 1.2s ease;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+.section{
+  max-width:900px;
+  margin:auto;
+  padding:70px 17px;
+  text-align:center;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .birthday{
-  font-size:clamp(32px,8vw,65px);
-  margin:35px 0 15px;
+  font-size:clamp(40px,10vw,75px);
+  line-height:1.1;
+  margin-bottom:30px;
 }
 
-.message{
-  max-width:700px;
-  margin:0 auto 35px;
+.text{
   font-size:18px;
-  line-height:1.8;
-  color:#ffe8f5;
-}
-
-.love{
-  font-size:clamp(45px,12vw,80px);
-  font-weight:bold;
-  margin:30px 0;
-  animation:heartbeat 1.2s infinite;
-  text-shadow:0 0 30px #ff3f9f;
-}
-
-@keyframes heartbeat{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.1);}
+  line-height:1.9;
+  color:#ffeaf6;
 }
 
 .divider{
-  width:80px;
+  width:85px;
   height:3px;
-  margin:35px auto;
+  background:#ff61b4;
   border-radius:10px;
-  background:#ff66b5;
-  box-shadow:0 0 15px #ff66b5;
+  margin:40px auto;
+  box-shadow:0 0 20px #ff61b4;
 }
 
-.gallery-title{
-  font-size:32px;
-  margin:50px 0 25px;
+.love{
+  margin:55px 0;
+  font-size:clamp(48px,13vw,95px);
+  font-weight:900;
+  text-shadow:
+  0 0 15px #ff3c98,
+  0 0 40px #ff3c98;
+  animation:love 1.2s infinite;
+}
+
+@keyframes love{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+}
+
+.memories-title{
+  font-size:clamp(30px,8vw,48px);
+  margin-bottom:12px;
+}
+
+.memories-sub{
+  opacity:.7;
+  margin-bottom:35px;
 }
 
 .gallery{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:14px;
 }
 
-.photo{
-  position:relative;
+.card{
   overflow:hidden;
-  border-radius:18px;
+  border-radius:22px;
   aspect-ratio:1/1;
-  background:#180d1d;
-  border:1px solid rgba(255,255,255,.12);
+  background:#160b19;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 12px 35px rgba(0,0,0,.3);
+  opacity:0;
+  transform:translateY(50px) scale(.95);
+  transition:all .8s ease;
   cursor:pointer;
 }
 
-.photo img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  transition:.5s;
+.card.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
-.photo:hover img{
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:.6s;
+}
+
+.card:active img{
   transform:scale(1.08);
 }
 
-.photo::after{
-  content:"❤️";
-  position:absolute;
-  right:10px;
-  bottom:8px;
-  font-size:18px;
-  opacity:.8;
+.final-box{
+  margin-top:70px;
+  padding:38px 22px;
+  border-radius:30px;
+  background:
+  linear-gradient(145deg,
+  rgba(255,80,170,.13),
+  rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
-.note{
-  margin:45px auto 0;
-  max-width:650px;
-  padding:25px;
-  border-radius:22px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  line-height:1.8;
-  color:#ffe6f3;
+.final-box h2{
+  font-size:clamp(30px,8vw,50px);
+  line-height:1.2;
+  margin-bottom:25px;
+}
+
+.question{
+  font-size:clamp(27px,7vw,45px);
+  font-weight:bold;
+  margin:30px 0;
+  color:#ffb5dc;
+}
+
+.yes{
+  display:inline-block;
+  margin-top:10px;
+  padding:16px 32px;
+  border-radius:50px;
+  background:linear-gradient(135deg,#ff318f,#ff5e65);
+  font-weight:bold;
+  font-size:18px;
+  box-shadow:0 10px 35px rgba(255,50,145,.35);
+  animation:soft 2s infinite;
+}
+
+@keyframes soft{
+  0%,100%{box-shadow:0 10px 35px rgba(255,50,145,.35)}
+  50%{box-shadow:0 10px 55px rgba(255,50,145,.7)}
 }
 
 footer{
   text-align:center;
-  margin-top:60px;
-  opacity:.6;
-  font-size:14px;
+  padding:50px 15px 70px;
+  opacity:.65;
 }
 
 #lightbox{
-  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.9);
-  z-index:100;
-  justify-content:center;
+  background:rgba(0,0,0,.94);
+  display:none;
   align-items:center;
-  padding:20px;
+  justify-content:center;
+  z-index:100;
+  padding:15px;
 }
 
 #lightbox img{
-  max-width:95%;
-  max-height:85vh;
-  border-radius:15px;
-  box-shadow:0 0 40px rgba(255,70,170,.4);
+  max-width:96%;
+  max-height:88vh;
+  border-radius:18px;
+  box-shadow:0 0 50px rgba(255,70,170,.35);
 }
 
 .close{
   position:absolute;
-  top:20px;
+  top:15px;
   right:20px;
-  font-size:30px;
+  font-size:35px;
   cursor:pointer;
 }
 
 @media(max-width:500px){
-  .container{
-    padding-left:12px;
-    padding-right:12px;
-  }
-
   .time{
-    width:68px;
+    width:70px;
   }
 
-  .time strong{
-    font-size:23px;
+  .time b{
+    font-size:24px;
   }
 
-  .message{
-    font-size:16px;
+  .text{
+    font-size:17px;
   }
 
   .gallery{
-    gap:8px;
+    gap:9px;
   }
 }
 </style>
@@ -315,145 +346,220 @@ footer{
 
 <div id="hearts"></div>
 
-<div class="container">
+<div class="page">
 
 <section class="hero">
 
-  <div class="small">A little surprise for</div>
+  <div class="overline">A LITTLE SURPRISE FOR</div>
 
   <h1>Supriya ❤️</h1>
 
-  <div class="subtitle">
-    Someone very special deserves something special ✨
+  <p>
+    Someone very special deserves
+    something truly special ✨
+  </p>
+
+  <div class="countdown">
+    <div class="time">
+      <b id="days">0</b>
+      <span>DAYS</span>
+    </div>
+
+    <div class="time">
+      <b id="hours">0</b>
+      <span>HOURS</span>
+    </div>
+
+    <div class="time">
+      <b id="minutes">0</b>
+      <span>MINUTES</span>
+    </div>
+
+    <div class="time">
+      <b id="seconds">0</b>
+      <span>SECONDS</span>
+    </div>
   </div>
 
-  <div class="countdown" id="countdown">
-    <div class="time">
-      <strong id="days">0</strong>
-      <span>Days</span>
-    </div>
-
-    <div class="time">
-      <strong id="hours">0</strong>
-      <span>Hours</span>
-    </div>
-
-    <div class="time">
-      <strong id="minutes">0</strong>
-      <span>Minutes</span>
-    </div>
-
-    <div class="time">
-      <strong id="seconds">0</strong>
-      <span>Seconds</span>
-    </div>
-  </div>
-
-  <button onclick="openSurprise()">
+  <button class="btn" onclick="openSurprise()">
     Open Your Surprise 💌
   </button>
 
 </section>
 
 
-<section id="surprise">
+<div id="surprise">
+
+<section class="section reveal">
 
   <div class="divider"></div>
 
   <div class="birthday">
-    🎂 Happy Birthday, Supriya! 🎂
+    🎂 Happy Birthday,<br>
+    Supriya! 🎂
   </div>
 
-  <p class="message">
+  <p class="text">
     Today is not just another day.
-    It's the day the world got someone incredibly beautiful,
-    kind and special — YOU. ❤️
+    It's the day the world got someone
+    incredibly beautiful, kind and special —
+    <b>YOU. ❤️</b>
     <br><br>
 
-    I don't know if words will ever be enough to explain
-    how important you are to me.
+    I don't know if words will ever be enough
+    to explain how important you are to me.
     But if I could give you one thing in life,
     I would give you the ability to see yourself
     through my eyes.
-    Then you would understand just how special you really are. 🥹❤️
+    <br><br>
+
+    Then you would understand just how special
+    you really are. 🥹❤️
     <br><br>
 
     Every smile of yours makes my day brighter.
     Every little memory with you is something
     I want to keep forever.
+    <br><br>
+
     And no matter how many birthdays come and go,
-    I hope I get to celebrate many more of them with you.
+    I hope I get to celebrate many more of them
+    with you. ❤️
   </p>
+
+</section>
+
+
+<section class="section reveal">
 
   <div class="love">
     I LOVE YOU ❤️
   </div>
 
-  <p class="message">
+  <p class="text">
     Supriya, I hope you never forget this:
-    <br>
-    <b>You are loved. You are precious. You are my favourite person. ❤️</b>
     <br><br>
-    Happy Birthday to the girl who makes my world
-    a little more beautiful just by being in it. 🌹
+
+    <b>
+    You are loved.<br>
+    You are precious.<br>
+    You are my favourite person. ❤️
+    </b>
   </p>
+
+</section>
+
+
+<section class="section reveal">
 
   <div class="divider"></div>
 
-  <h2 class="gallery-title">
-    Our Beautiful Memories 📸❤️
+  <h2 class="memories-title">
+    Our Beautiful Memories 📸
   </h2>
+
+  <p class="memories-sub">
+    20 moments that I want to keep forever ❤️
+  </p>
 
   <div class="gallery">
 
-    <div class="photo"><img src="photo-01.jpg" alt="Memory 1"></div>
-    <div class="photo"><img src="photo-02.jpg" alt="Memory 2"></div>
-    <div class="photo"><img src="photo-03.jpg" alt="Memory 3"></div>
-    <div class="photo"><img src="photo-04.jpg" alt="Memory 4"></div>
-    <div class="photo"><img src="photo-05.jpg" alt="Memory 5"></div>
-    <div class="photo"><img src="photo-06.jpg" alt="Memory 6"></div>
-    <div class="photo"><img src="photo-07.jpg" alt="Memory 7"></div>
-    <div class="photo"><img src="photo-08.jpg" alt="Memory 8"></div>
-    <div class="photo"><img src="photo-09.jpg" alt="Memory 9"></div>
-    <div class="photo"><img src="photo-10.jpg" alt="Memory 10"></div>
-    <div class="photo"><img src="photo-11.jpg" alt="Memory 11"></div>
-    <div class="photo"><img src="photo-12.jpg" alt="Memory 12"></div>
-    <div class="photo"><img src="photo-13.jpg" alt="Memory 13"></div>
-    <div class="photo"><img src="photo-14.jpg" alt="Memory 14"></div>
-    <div class="photo"><img src="photo-15.jpg" alt="Memory 15"></div>
-    <div class="photo"><img src="photo-16.jpg" alt="Memory 16"></div>
-    <div class="photo"><img src="photo-17.jpg" alt="Memory 17"></div>
-    <div class="photo"><img src="photo-18.jpg" alt="Memory 18"></div>
-    <div class="photo"><img src="photo-19.jpg" alt="Memory 19"></div>
-    <div class="photo"><img src="photo-20.jpg" alt="Memory 20"></div>
+    <div class="card"><img src="photo-01.jpg"></div>
+    <div class="card"><img src="photo-02.jpg"></div>
+    <div class="card"><img src="photo-03.jpg"></div>
+    <div class="card"><img src="photo-04.jpg"></div>
+    <div class="card"><img src="photo-05.jpg"></div>
+    <div class="card"><img src="photo-06.jpg"></div>
+    <div class="card"><img src="photo-07.jpg"></div>
+    <div class="card"><img src="photo-08.jpg"></div>
+    <div class="card"><img src="photo-09.jpg"></div>
+    <div class="card"><img src="photo-10.jpg"></div>
+    <div class="card"><img src="photo-11.jpg"></div>
+    <div class="card"><img src="photo-12.jpg"></div>
+    <div class="card"><img src="photo-13.jpg"></div>
+    <div class="card"><img src="photo-14.jpg"></div>
+    <div class="card"><img src="photo-15.jpg"></div>
+    <div class="card"><img src="photo-16.jpg"></div>
+    <div class="card"><img src="photo-17.jpg"></div>
+    <div class="card"><img src="photo-18.jpg"></div>
+    <div class="card"><img src="photo-19.jpg"></div>
+    <div class="card"><img src="photo-20.jpg"></div>
 
   </div>
-
-  <div class="note">
-    <b>One last thing... 💌</b>
-    <br><br>
-    If I could write down every reason why I love you,
-    this page would never be long enough.
-    So instead, I'll just keep creating memories with you.
-    <br><br>
-    <b>Happy Birthday once again, Supriya. ❤️</b>
-    <br>
-    <br>
-    Forever yours. 🫶
-  </div>
-
-  <footer>
-    Made with ❤️ just for Supriya
-  </footer>
 
 </section>
+
+
+<section class="section reveal">
+
+  <div class="final-box">
+
+    <h2>
+      One Last Question... 💌
+    </h2>
+
+    <p class="text">
+      Among all the people in this world,
+      somehow I got lucky enough to have you
+      in my life.
+      <br><br>
+
+      And if I had to choose again,
+      in every lifetime,
+      <b>I would still choose you. ❤️</b>
+    </p>
+
+    <div class="question">
+      Supriya,<br>
+      Will You Always Stay With Me? 🥹❤️
+    </div>
+
+    <div class="yes">
+      Always & Forever ❤️
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="text">
+      I promise to make you smile,
+      stand beside you,
+      create beautiful memories with you,
+      and love you a little more
+      every single day.
+      <br><br>
+
+      <b>
+      Happy Birthday, My Special One. 🌹
+      </b>
+      <br><br>
+
+      You are not just a part of my story...
+      <br>
+      <b>You are my favourite chapter. ❤️</b>
+    </p>
+
+  </div>
+
+</section>
+
+
+<footer>
+  Made with ❤️ specially for Supriya
+  <br><br>
+  Forever yours. 🫶
+</footer>
+
+</div>
 
 </div>
 
 
 <div id="lightbox">
-  <div class="close" onclick="closePhoto()">✕</div>
-  <img id="bigPhoto" src="" alt="Photo">
+
+  <div class="close" onclick="closePhoto()">×</div>
+
+  <img id="bigPhoto">
+
 </div>
 
 
@@ -461,11 +567,13 @@ footer{
 
 /* COUNTDOWN */
 
-const birthday = new Date("December 7, 2026 00:00:00").getTime();
+const birthday =
+new Date("December 7, 2026 00:00:00").getTime();
 
-function updateCountdown(){
+function countdown(){
 
   const now = new Date().getTime();
+
   const distance = birthday - now;
 
   if(distance <= 0){
@@ -478,126 +586,36 @@ function updateCountdown(){
     return;
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) /
-    (1000 * 60 * 60)
+  document.getElementById("days").innerText =
+  Math.floor(distance/(1000*60*60*24));
+
+  document.getElementById("hours").innerText =
+  Math.floor(
+    (distance%(1000*60*60*24))/(1000*60*60)
   );
 
-  const minutes = Math.floor(
-    (distance % (1000 * 60 * 60)) /
-    (1000 * 60)
+  document.getElementById("minutes").innerText =
+  Math.floor(
+    (distance%(1000*60*60))/(1000*60)
   );
 
-  const seconds = Math.floor(
-    (distance % (1000 * 60)) / 1000
+  document.getElementById("seconds").innerText =
+  Math.floor(
+    (distance%(1000*60))/1000
   );
-
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
-  document.getElementById("seconds").innerText = seconds;
 }
 
-updateCountdown();
-setInterval(updateCountdown,1000);
+countdown();
+
+setInterval(countdown,1000);
 
 
-/* OPEN SURPRISE */
+/* OPEN */
 
 function openSurprise(){
 
-  const surprise = document.getElementById("surprise");
-
-  surprise.style.display = "block";
+  document.getElementById("surprise").style.display="block";
 
   setTimeout(function(){
 
-    surprise.scrollIntoView({
-      behavior:"smooth"
-    });
-
-  },100);
-
-  for(let i=0;i<25;i++){
-    setTimeout(createHeart,i*80);
-  }
-}
-
-
-/* FLOATING HEARTS */
-
-function createHeart(){
-
-  const heart = document.createElement("div");
-
-  heart.className = "heart";
-
-  const hearts = ["❤️","💗","💕","💖","💓","💘"];
-
-  heart.innerText =
-    hearts[Math.floor(Math.random()*hearts.length)];
-
-  heart.style.left =
-    Math.random()*100 + "%";
-
-  heart.style.fontSize =
-    (15 + Math.random()*25) + "px";
-
-  heart.style.animationDuration =
-    (4 + Math.random()*5) + "s";
-
-  document.getElementById("hearts").appendChild(heart);
-
-  setTimeout(function(){
-    heart.remove();
-  },9000);
-}
-
-setInterval(createHeart,700);
-
-
-/* PHOTO LIGHTBOX */
-
-const photos = document.querySelectorAll(".photo img");
-
-photos.forEach(function(photo){
-
-  photo.addEventListener("click",function(){
-
-    document.getElementById("bigPhoto").src =
-      this.src;
-
-    document.getElementById("lightbox").style.display =
-      "flex";
-
-  });
-
-});
-
-
-function closePhoto(){
-
-  document.getElementById("lightbox").style.display =
-    "none";
-
-}
-
-
-/* CLOSE LIGHTBOX BY CLICKING OUTSIDE */
-
-document.getElementById("lightbox").addEventListener(
-  "click",
-  function(e){
-
-    if(e.target === this){
-      closePhoto();
-    }
-
-  }
-);
-
-</script>
-
-</body>
-</html>
+    document.getElementById("surprise")
