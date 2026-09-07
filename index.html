@@ -619,3 +619,133 @@ function openSurprise(){
   setTimeout(function(){
 
     document.getElementById("surprise")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+    revealItems();
+
+  },100);
+
+  for(let i=0;i<30;i++){
+
+    setTimeout(createHeart,i*70);
+
+  }
+}
+
+
+/* SCROLL REVEAL */
+
+function revealItems(){
+
+  const items =
+  document.querySelectorAll(".reveal");
+
+  items.forEach(function(item){
+
+    item.classList.add("show");
+
+  });
+
+  const cards =
+  document.querySelectorAll(".card");
+
+  cards.forEach(function(card,index){
+
+    setTimeout(function(){
+
+      card.classList.add("show");
+
+    },index*120);
+
+  });
+
+}
+
+
+/* HEARTS */
+
+function createHeart(){
+
+  const heart =
+  document.createElement("div");
+
+  heart.className="heart";
+
+  const symbols=[
+    "❤️","💗","💕","💖",
+    "💓","💘","💞","🌹"
+  ];
+
+  heart.innerText =
+  symbols[Math.floor(Math.random()*symbols.length)];
+
+  heart.style.left =
+  Math.random()*100+"%";
+
+  heart.style.fontSize =
+  (15+Math.random()*25)+"px";
+
+  heart.style.animationDuration =
+  (4+Math.random()*5)+"s";
+
+  document
+  .getElementById("hearts")
+  .appendChild(heart);
+
+  setTimeout(function(){
+
+    heart.remove();
+
+  },9000);
+}
+
+setInterval(createHeart,700);
+
+
+/* PHOTO LIGHTBOX */
+
+document
+.querySelectorAll(".card img")
+.forEach(function(img){
+
+  img.addEventListener("click",function(){
+
+    document.getElementById("bigPhoto")
+    .src=this.src;
+
+    document.getElementById("lightbox")
+    .style.display="flex";
+
+  });
+
+});
+
+
+function closePhoto(){
+
+  document.getElementById("lightbox")
+  .style.display="none";
+
+}
+
+
+/* CLOSE BY OUTSIDE TAP */
+
+document
+.getElementById("lightbox")
+.addEventListener("click",function(e){
+
+  if(e.target===this){
+
+    closePhoto();
+
+  }
+
+});
+
+</script>
+
+</body>
+                                                </html>
