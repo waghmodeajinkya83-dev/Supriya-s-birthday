@@ -18,37 +18,37 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
   background:
-  radial-gradient(circle at 20% 10%,#651c58 0%,transparent 35%),
-  radial-gradient(circle at 90% 30%,#421044 0%,transparent 35%),
-  linear-gradient(180deg,#210a25,#0b0610);
-  color:white;
+    radial-gradient(circle at 15% 5%,#6b1d5e 0%,transparent 32%),
+    radial-gradient(circle at 90% 30%,#4b1248 0%,transparent 30%),
+    linear-gradient(180deg,#220a27,#0b0610);
   overflow-x:hidden;
 }
 
 #hearts{
   position:fixed;
   inset:0;
-  overflow:hidden;
   pointer-events:none;
-  z-index:0;
+  overflow:hidden;
+  z-index:1;
 }
 
 .heart{
   position:absolute;
-  bottom:-50px;
-  animation:up linear forwards;
+  bottom:-60px;
+  animation:floatHeart linear forwards;
   opacity:.75;
 }
 
-@keyframes up{
+@keyframes floatHeart{
   0%{
-    transform:translateY(0) rotate(0);
+    transform:translateY(0) rotate(0deg);
     opacity:0;
   }
   15%{opacity:.8}
   100%{
-    transform:translateY(-110vh) rotate(360deg);
+    transform:translateY(-115vh) rotate(360deg);
     opacity:0;
   }
 }
@@ -69,50 +69,50 @@ body{
 }
 
 .overline{
-  letter-spacing:5px;
   font-size:14px;
+  letter-spacing:5px;
   opacity:.75;
   margin-bottom:20px;
 }
 
 .hero h1{
-  font-size:clamp(52px,14vw,100px);
+  font-size:clamp(55px,14vw,105px);
   line-height:1;
   background:linear-gradient(90deg,#fff,#ffb7e2,#fff);
   -webkit-background-clip:text;
   color:transparent;
-  filter:drop-shadow(0 0 18px rgba(255,80,180,.45));
-  animation:pulse 2s infinite alternate;
+  filter:drop-shadow(0 0 20px rgba(255,80,180,.5));
+  animation:titleGlow 2s infinite alternate;
 }
 
-@keyframes pulse{
-  from{transform:scale(1)}
-  to{transform:scale(1.04)}
+@keyframes titleGlow{
+  from{transform:scale(1);}
+  to{transform:scale(1.04);}
 }
 
 .hero p{
-  margin-top:22px;
-  font-size:clamp(18px,5vw,27px);
-  max-width:650px;
+  margin-top:25px;
+  font-size:clamp(18px,5vw,28px);
   line-height:1.5;
+  max-width:650px;
 }
 
 .countdown{
   display:flex;
-  gap:9px;
-  margin:35px 0;
   justify-content:center;
+  gap:9px;
   flex-wrap:wrap;
+  margin:35px 0;
 }
 
 .time{
   width:76px;
-  padding:13px 5px;
+  padding:14px 5px;
   border-radius:18px;
   background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.17);
+  border:1px solid rgba(255,255,255,.18);
   backdrop-filter:blur(10px);
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  box-shadow:0 10px 35px rgba(0,0,0,.2);
 }
 
 .time b{
@@ -130,19 +130,72 @@ body{
 .btn{
   border:none;
   color:white;
-  background:linear-gradient(135deg,#ff2e9d,#ff6666);
+  cursor:pointer;
   padding:17px 30px;
   border-radius:50px;
   font-size:17px;
   font-weight:bold;
-  box-shadow:0 10px 35px rgba(255,45,155,.35);
-  cursor:pointer;
+  background:linear-gradient(135deg,#ff2d9b,#ff6565);
+  box-shadow:0 10px 40px rgba(255,40,150,.4);
   transition:.3s;
 }
 
 .btn:active{
-  transform:scale(.95);
+  transform:scale(.94);
 }
+
+/* LOVE INTRO */
+
+#lovePopup{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:rgba(8,2,12,.97);
+  z-index:1000;
+  padding:25px;
+}
+
+.popupContent{
+  animation:popupIn 1s ease;
+}
+
+@keyframes popupIn{
+  from{
+    opacity:0;
+    transform:scale(.5);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.popupHeart{
+  font-size:clamp(75px,20vw,140px);
+  animation:heartbeat 1s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.18);}
+}
+
+.popupContent h2{
+  font-size:clamp(40px,10vw,75px);
+  margin:15px 0;
+  text-shadow:0 0 25px #ff3c98;
+}
+
+.popupContent p{
+  font-size:clamp(19px,5vw,28px);
+  color:#ffd7eb;
+  line-height:1.6;
+}
+
+/* SURPRISE */
 
 #surprise{
   display:none;
@@ -157,8 +210,8 @@ body{
 
 .reveal{
   opacity:0;
-  transform:translateY(50px);
-  transition:1s;
+  transform:translateY(60px);
+  transition:1s ease;
 }
 
 .reveal.show{
@@ -167,9 +220,10 @@ body{
 }
 
 .birthday{
-  font-size:clamp(40px,10vw,75px);
-  line-height:1.1;
+  font-size:clamp(38px,10vw,75px);
+  line-height:1.15;
   margin-bottom:30px;
+  text-shadow:0 0 20px rgba(255,100,190,.4);
 }
 
 .text{
@@ -181,29 +235,33 @@ body{
 .divider{
   width:85px;
   height:3px;
-  background:#ff61b4;
-  border-radius:10px;
   margin:40px auto;
+  border-radius:10px;
+  background:#ff61b4;
   box-shadow:0 0 20px #ff61b4;
 }
 
+/* I LOVE YOU */
+
 .love{
-  margin:55px 0;
-  font-size:clamp(48px,13vw,95px);
+  font-size:clamp(45px,13vw,95px);
   font-weight:900;
+  margin:45px 0;
   text-shadow:
-  0 0 15px #ff3c98,
-  0 0 40px #ff3c98;
-  animation:love 1.2s infinite;
+    0 0 15px #ff3c98,
+    0 0 40px #ff3c98;
+  animation:loveBeat 1.2s infinite;
 }
 
-@keyframes love{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.1)}
+@keyframes loveBeat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
 }
+
+/* GALLERY */
 
 .memories-title{
-  font-size:clamp(30px,8vw,48px);
+  font-size:clamp(30px,8vw,50px);
   margin-bottom:12px;
 }
 
@@ -219,16 +277,17 @@ body{
 }
 
 .card{
+  position:relative;
   overflow:hidden;
   border-radius:22px;
   aspect-ratio:1/1;
-  background:#160b19;
+  background:#150a18;
   border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 12px 35px rgba(0,0,0,.3);
-  opacity:0;
-  transform:translateY(50px) scale(.95);
-  transition:all .8s ease;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
   cursor:pointer;
+  opacity:0;
+  transform:translateY(60px) scale(.9);
+  transition:all .8s ease;
 }
 
 .card.show{
@@ -239,29 +298,53 @@ body{
 .card img{
   width:100%;
   height:100%;
-  object-fit:cover;
   display:block;
-  transition:.6s;
+  object-fit:cover;
+  transition:transform .6s ease;
 }
 
-.card:active img{
+.card:hover img{
   transform:scale(1.08);
 }
 
-.final-box{
-  margin-top:70px;
-  padding:38px 22px;
-  border-radius:30px;
-  background:
-  linear-gradient(145deg,
-  rgba(255,80,170,.13),
-  rgba(255,255,255,.05));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+.card:after{
+  content:"❤️";
+  position:absolute;
+  right:10px;
+  bottom:9px;
+  font-size:23px;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));
 }
 
-.final-box h2{
-  font-size:clamp(30px,8vw,50px);
+/* PHOTO 06, 08, 09 */
+
+.card.rotate img{
+  object-fit:contain;
+  transform:rotate(90deg) scale(.88);
+}
+
+.card.rotate:hover img{
+  transform:rotate(90deg) scale(.94);
+}
+
+/* FINAL */
+
+.finalBox{
+  margin-top:60px;
+  padding:40px 22px;
+  border-radius:30px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,80,170,.15),
+      rgba(255,255,255,.05)
+    );
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 20px 70px rgba(0,0,0,.3);
+}
+
+.finalBox h2{
+  font-size:clamp(30px,8vw,52px);
   line-height:1.2;
   margin-bottom:25px;
 }
@@ -269,41 +352,49 @@ body{
 .question{
   font-size:clamp(27px,7vw,45px);
   font-weight:bold;
-  margin:30px 0;
-  color:#ffb5dc;
+  color:#ffb8dc;
+  line-height:1.4;
+  margin:35px 0;
+  text-shadow:0 0 15px rgba(255,80,170,.5);
 }
 
-.yes{
+.forever{
   display:inline-block;
-  margin-top:10px;
-  padding:16px 32px;
+  padding:16px 30px;
   border-radius:50px;
-  background:linear-gradient(135deg,#ff318f,#ff5e65);
+  background:linear-gradient(135deg,#ff318f,#ff6262);
   font-weight:bold;
   font-size:18px;
-  box-shadow:0 10px 35px rgba(255,50,145,.35);
-  animation:soft 2s infinite;
+  box-shadow:0 10px 40px rgba(255,50,145,.4);
+  animation:softGlow 2s infinite;
 }
 
-@keyframes soft{
-  0%,100%{box-shadow:0 10px 35px rgba(255,50,145,.35)}
-  50%{box-shadow:0 10px 55px rgba(255,50,145,.7)}
+@keyframes softGlow{
+  0%,100%{
+    box-shadow:0 10px 35px rgba(255,50,145,.35);
+  }
+  50%{
+    box-shadow:0 10px 60px rgba(255,50,145,.75);
+  }
 }
 
 footer{
   text-align:center;
   padding:50px 15px 70px;
   opacity:.65;
+  line-height:1.8;
 }
+
+/* LIGHTBOX */
 
 #lightbox{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.94);
+  background:rgba(0,0,0,.95);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:100;
+  z-index:2000;
   padding:15px;
 }
 
@@ -311,18 +402,21 @@ footer{
   max-width:96%;
   max-height:88vh;
   border-radius:18px;
-  box-shadow:0 0 50px rgba(255,70,170,.35);
+  box-shadow:0 0 50px rgba(255,70,170,.4);
 }
 
 .close{
   position:absolute;
   top:15px;
   right:20px;
-  font-size:35px;
+  font-size:38px;
   cursor:pointer;
 }
 
+/* MOBILE */
+
 @media(max-width:500px){
+
   .time{
     width:70px;
   }
@@ -338,6 +432,7 @@ footer{
   .gallery{
     gap:9px;
   }
+
 }
 </style>
 </head>
@@ -346,20 +441,55 @@ footer{
 
 <div id="hearts"></div>
 
+
+<!-- LOVE MESSAGE THAT APPEARS FIRST -->
+
+<div id="lovePopup">
+
+  <div class="popupContent">
+
+    <div class="popupHeart">
+      ❤️
+    </div>
+
+    <h2>
+      I LOVE YOU
+    </h2>
+
+    <p>
+      Supriya, You Are My Everything 🥹❤️
+      <br>
+      Forever & Always ❤️
+    </p>
+
+  </div>
+
+</div>
+
+
 <div class="page">
+
+
+<!-- HERO -->
 
 <section class="hero">
 
-  <div class="overline">A LITTLE SURPRISE FOR</div>
+  <div class="overline">
+    A LITTLE SURPRISE FOR
+  </div>
 
-  <h1>Supriya ❤️</h1>
+  <h1>
+    Supriya ❤️
+  </h1>
 
   <p>
     Someone very special deserves
     something truly special ✨
   </p>
 
+
   <div class="countdown">
+
     <div class="time">
       <b id="days">0</b>
       <span>DAYS</span>
@@ -379,10 +509,16 @@ footer{
       <b id="seconds">0</b>
       <span>SECONDS</span>
     </div>
+
   </div>
 
-  <button class="btn" onclick="openSurprise()">
+
+  <button
+    class="btn"
+    onclick="openSurprise()">
+
     Open Your Surprise 💌
+
   </button>
 
 </section>
@@ -390,45 +526,65 @@ footer{
 
 <div id="surprise">
 
+
+<!-- BIRTHDAY -->
+
 <section class="section reveal">
 
   <div class="divider"></div>
 
   <div class="birthday">
-    🎂 Happy Birthday,<br>
+
+    🎂 Happy Birthday,
+    <br>
     Supriya! 🎂
+
   </div>
 
+
   <p class="text">
+
     Today is not just another day.
+
     It's the day the world got someone
     incredibly beautiful, kind and special —
     <b>YOU. ❤️</b>
+
     <br><br>
 
     I don't know if words will ever be enough
     to explain how important you are to me.
+
     But if I could give you one thing in life,
+
     I would give you the ability to see yourself
     through my eyes.
+
     <br><br>
 
     Then you would understand just how special
     you really are. 🥹❤️
+
     <br><br>
 
     Every smile of yours makes my day brighter.
+
     Every little memory with you is something
     I want to keep forever.
+
     <br><br>
 
     And no matter how many birthdays come and go,
+
     I hope I get to celebrate many more of them
     with you. ❤️
+
   </p>
 
 </section>
 
+
+<!-- LOVE -->
 
 <section class="section reveal">
 
@@ -437,18 +593,31 @@ footer{
   </div>
 
   <p class="text">
+
     Supriya, I hope you never forget this:
+
     <br><br>
 
     <b>
-    You are loved.<br>
-    You are precious.<br>
-    You are my favourite person. ❤️
+      You are loved. ❤️
+      <br>
+      You are precious. 🌹
+      <br>
+      You are my favourite person. 🥹
     </b>
+
+    <br><br>
+
+    You make ordinary moments feel special,
+    and every memory with you is something
+    I want to keep forever. 💕
+
   </p>
 
 </section>
 
+
+<!-- MEMORIES -->
 
 <section class="section reveal">
 
@@ -459,83 +628,176 @@ footer{
   </h2>
 
   <p class="memories-sub">
-    20 moments that I want to keep forever ❤️
+    20 little pieces of happiness ❤️
   </p>
+
 
   <div class="gallery">
 
-    <div class="card"><img src="photo-01.jpg"></div>
-    <div class="card"><img src="photo-02.jpg"></div>
-    <div class="card"><img src="photo-03.jpg"></div>
-    <div class="card"><img src="photo-04.jpg"></div>
-    <div class="card"><img src="photo-05.jpg"></div>
-    <div class="card"><img src="photo-06.jpg"></div>
-    <div class="card"><img src="photo-07.jpg"></div>
-    <div class="card"><img src="photo-08.jpg"></div>
-    <div class="card"><img src="photo-09.jpg"></div>
-    <div class="card"><img src="photo-10.jpg"></div>
-    <div class="card"><img src="photo-11.jpg"></div>
-    <div class="card"><img src="photo-12.jpg"></div>
-    <div class="card"><img src="photo-13.jpg"></div>
-    <div class="card"><img src="photo-14.jpg"></div>
-    <div class="card"><img src="photo-15.jpg"></div>
-    <div class="card"><img src="photo-16.jpg"></div>
-    <div class="card"><img src="photo-17.jpg"></div>
-    <div class="card"><img src="photo-18.jpg"></div>
-    <div class="card"><img src="photo-19.jpg"></div>
-    <div class="card"><img src="photo-20.jpg"></div>
+    <div class="card">
+      <img src="photo-01.jpg" alt="Memory 1">
+    </div>
+
+    <div class="card">
+      <img src="photo-02.jpg" alt="Memory 2">
+    </div>
+
+    <div class="card">
+      <img src="photo-03.jpg" alt="Memory 3">
+    </div>
+
+    <div class="card">
+      <img src="photo-04.jpg" alt="Memory 4">
+    </div>
+
+    <div class="card">
+      <img src="photo-05.jpg" alt="Memory 5">
+    </div>
+
+    <div class="card rotate">
+      <img src="photo-06.jpg" alt="Memory 6">
+    </div>
+
+    <div class="card">
+      <img src="photo-07.jpg" alt="Memory 7">
+    </div>
+
+    <div class="card rotate">
+      <img src="photo-08.jpg" alt="Memory 8">
+    </div>
+
+    <div class="card rotate">
+      <img src="photo-09.jpg" alt="Memory 9">
+    </div>
+
+    <div class="card">
+      <img src="photo-10.jpg" alt="Memory 10">
+    </div>
+
+    <div class="card">
+      <img src="photo-11.jpg" alt="Memory 11">
+    </div>
+
+    <div class="card">
+      <img src="photo-12.jpg" alt="Memory 12">
+    </div>
+
+    <div class="card">
+      <img src="photo-13.jpg" alt="Memory 13">
+    </div>
+
+    <div class="card">
+      <img src="photo-14.jpg" alt="Memory 14">
+    </div>
+
+    <div class="card">
+      <img src="photo-15.jpg" alt="Memory 15">
+    </div>
+
+    <div class="card">
+      <img src="photo-16.jpg" alt="Memory 16">
+    </div>
+
+    <div class="card">
+      <img src="photo-17.jpg" alt="Memory 17">
+    </div>
+
+    <div class="card">
+      <img src="photo-18.jpg" alt="Memory 18">
+    </div>
+
+    <div class="card">
+      <img src="photo-19.jpg" alt="Memory 19">
+    </div>
+
+    <div class="card">
+      <img src="photo-20.jpg" alt="Memory 20">
+    </div>
 
   </div>
 
 </section>
 
 
+<!-- FINAL -->
+
 <section class="section reveal">
 
-  <div class="final-box">
+  <div class="finalBox">
 
     <h2>
       One Last Question... 💌
     </h2>
 
     <p class="text">
+
       Among all the people in this world,
-      somehow I got lucky enough to have you
-      in my life.
+
+      somehow I got lucky enough
+      to have you in my life.
+
       <br><br>
 
       And if I had to choose again,
+
       in every lifetime,
-      <b>I would still choose you. ❤️</b>
+
+      <b>
+        I would still choose you. ❤️
+      </b>
+
     </p>
 
+
     <div class="question">
-      Supriya,<br>
-      Will You Always Stay With Me? 🥹❤️
+
+      Supriya,
+
+      <br>
+
+      Will You Always Stay With Me?
+
+      🥹❤️
+
     </div>
 
-    <div class="yes">
+
+    <div class="forever">
       Always & Forever ❤️
     </div>
 
+
     <div class="divider"></div>
 
+
     <p class="text">
+
       I promise to make you smile,
+
       stand beside you,
+
       create beautiful memories with you,
+
       and love you a little more
       every single day.
+
       <br><br>
 
       <b>
-      Happy Birthday, My Special One. 🌹
+        Happy Birthday,
+        My Special One. 🌹
       </b>
+
       <br><br>
 
       You are not just a part of my story...
+
       <br>
-      <b>You are my favourite chapter. ❤️</b>
+
+      <b>
+        You are my favourite chapter. ❤️
+      </b>
+
     </p>
 
   </div>
@@ -544,21 +806,38 @@ footer{
 
 
 <footer>
-  Made with ❤️ specially for Supriya
+
+  Made with ❤️
+  specially for Supriya
+
   <br><br>
+
   Forever yours. 🫶
+
 </footer>
 
-</div>
 
 </div>
 
+</div>
+
+
+<!-- PHOTO VIEWER -->
 
 <div id="lightbox">
 
-  <div class="close" onclick="closePhoto()">×</div>
+  <div
+    class="close"
+    onclick="closePhoto()">
 
-  <img id="bigPhoto">
+    ×
+
+  </div>
+
+  <img
+    id="bigPhoto"
+    src=""
+    alt="Full Photo">
 
 </div>
 
@@ -568,103 +847,175 @@ footer{
 /* COUNTDOWN */
 
 const birthday =
-new Date("December 7, 2026 00:00:00").getTime();
+new Date(
+  "December 7, 2026 00:00:00"
+).getTime();
+
 
 function countdown(){
 
-  const now = new Date().getTime();
+  const now =
+  new Date().getTime();
 
-  const distance = birthday - now;
+  const distance =
+  birthday - now;
+
 
   if(distance <= 0){
 
-    document.getElementById("days").innerText = "0";
-    document.getElementById("hours").innerText = "0";
-    document.getElementById("minutes").innerText = "0";
-    document.getElementById("seconds").innerText = "0";
+    document.getElementById("days")
+    .innerText="0";
+
+    document.getElementById("hours")
+    .innerText="0";
+
+    document.getElementById("minutes")
+    .innerText="0";
+
+    document.getElementById("seconds")
+    .innerText="0";
 
     return;
+
   }
 
-  document.getElementById("days").innerText =
-  Math.floor(distance/(1000*60*60*24));
 
-  document.getElementById("hours").innerText =
+  document.getElementById("days")
+  .innerText =
   Math.floor(
-    (distance%(1000*60*60*24))/(1000*60*60)
+    distance /
+    (1000*60*60*24)
   );
 
-  document.getElementById("minutes").innerText =
+
+  document.getElementById("hours")
+  .innerText =
   Math.floor(
-    (distance%(1000*60*60))/(1000*60)
+    (distance %
+    (1000*60*60*24))
+    /
+    (1000*60*60)
   );
 
-  document.getElementById("seconds").innerText =
+
+  document.getElementById("minutes")
+  .innerText =
   Math.floor(
-    (distance%(1000*60))/1000
+    (distance %
+    (1000*60*60))
+    /
+    (1000*60)
   );
+
+
+  document.getElementById("seconds")
+  .innerText =
+  Math.floor(
+    (distance %
+    (1000*60))
+    /
+    1000
+  );
+
 }
+
 
 countdown();
 
 setInterval(countdown,1000);
 
 
-/* OPEN */
+/* OPEN SURPRISE */
 
 function openSurprise(){
 
-  document.getElementById("surprise").style.display="block";
+  const popup =
+  document.getElementById(
+    "lovePopup"
+  );
+
+  popup.style.display="flex";
+
+
+  createBurst();
+
 
   setTimeout(function(){
 
-    document.getElementById("surprise")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-    revealItems();
-
-  },100);
-
-  for(let i=0;i<30;i++){
-
-    setTimeout(createHeart,i*70);
-
-  }
-}
+    popup.style.display="none";
 
 
-/* SCROLL REVEAL */
+    document.getElementById(
+      "surprise"
+    ).style.display="block";
 
-function revealItems(){
 
-  const items =
-  document.querySelectorAll(".reveal");
+    revealAll();
 
-  items.forEach(function(item){
-
-    item.classList.add("show");
-
-  });
-
-  const cards =
-  document.querySelectorAll(".card");
-
-  cards.forEach(function(card,index){
 
     setTimeout(function(){
 
-      card.classList.add("show");
+      document.getElementById(
+        "surprise"
+      ).scrollIntoView({
+        behavior:"smooth"
+      });
 
-    },index*120);
+    },100);
 
-  });
+  },4000);
 
 }
 
 
-/* HEARTS */
+/* REVEAL EVERYTHING */
+
+function revealAll(){
+
+  const sections =
+  document.querySelectorAll(
+    ".reveal"
+  );
+
+
+  sections.forEach(
+    function(section){
+
+      section.classList.add(
+        "show"
+      );
+
+    }
+  );
+
+
+  const cards =
+  document.querySelectorAll(
+    ".card"
+  );
+
+
+  cards.forEach(
+    function(card,index){
+
+      setTimeout(
+        function(){
+
+          card.classList.add(
+            "show"
+          );
+
+        },
+        400 + index * 170
+      );
+
+    }
+  );
+
+}
+
+
+/* FLOATING HEARTS */
 
 function createHeart(){
 
@@ -673,79 +1024,131 @@ function createHeart(){
 
   heart.className="heart";
 
+
   const symbols=[
-    "❤️","💗","💕","💖",
-    "💓","💘","💞","🌹"
+    "❤️",
+    "💗",
+    "💕",
+    "💖",
+    "💓",
+    "💘",
+    "💞",
+    "🌹"
   ];
 
+
   heart.innerText =
-  symbols[Math.floor(Math.random()*symbols.length)];
+  symbols[
+    Math.floor(
+      Math.random()*symbols.length
+    )
+  ];
+
 
   heart.style.left =
   Math.random()*100+"%";
 
+
   heart.style.fontSize =
   (15+Math.random()*25)+"px";
+
 
   heart.style.animationDuration =
   (4+Math.random()*5)+"s";
 
+
   document
   .getElementById("hearts")
   .appendChild(heart);
+
 
   setTimeout(function(){
 
     heart.remove();
 
   },9000);
+
 }
 
-setInterval(createHeart,700);
+
+setInterval(
+  createHeart,
+  650
+);
 
 
-/* PHOTO LIGHTBOX */
+/* HEART BURST */
+
+function createBurst(){
+
+  for(
+    let i=0;
+    i<45;
+    i++
+  ){
+
+    setTimeout(
+      createHeart,
+      i*40
+    );
+
+  }
+
+}
+
+
+/* PHOTO FULL SCREEN */
 
 document
 .querySelectorAll(".card img")
 .forEach(function(img){
 
-  img.addEventListener("click",function(){
+  img.addEventListener(
+    "click",
+    function(){
 
-    document.getElementById("bigPhoto")
-    .src=this.src;
+      document.getElementById(
+        "bigPhoto"
+      ).src=this.src;
 
-    document.getElementById("lightbox")
-    .style.display="flex";
 
-  });
+      document.getElementById(
+        "lightbox"
+      ).style.display="flex";
+
+    }
+  );
 
 });
 
 
 function closePhoto(){
 
-  document.getElementById("lightbox")
-  .style.display="none";
+  document.getElementById(
+    "lightbox"
+  ).style.display="none";
 
 }
 
 
-/* CLOSE BY OUTSIDE TAP */
+/* CLOSE PHOTO OUTSIDE */
 
 document
 .getElementById("lightbox")
-.addEventListener("click",function(e){
+.addEventListener(
+  "click",
+  function(e){
 
-  if(e.target===this){
+    if(e.target===this){
 
-    closePhoto();
+      closePhoto();
+
+    }
 
   }
-
-});
+);
 
 </script>
 
 </body>
-                                                </html>
+</html>
